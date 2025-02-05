@@ -18,4 +18,14 @@ class MembershipAdmin(admin.ModelAdmin):
         # "unique_code"
     ]
 
+    list_display = ["name", "membership_plan", "membership_active", "unique_code"]
+
+    list_filter = ["membership_plan"]
+
+    search_fields = ["name"]
+
+    list_display_links = ["name"]
+
+    # list_editable = ["membership_plan", "unique_code"]
+
 admin.site.register(Membership, MembershipAdmin)
