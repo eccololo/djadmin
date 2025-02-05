@@ -10,4 +10,12 @@ admin.site.site_header = "DjAdmin"
 admin.site.index_title = "Admin"
 admin.site.site_title = "DjAdmin"
 
-admin.site.register(Membership)
+class MembershipAdmin(admin.ModelAdmin):
+
+    fields = [
+        ("name", "membership_plan"), 
+        "membership_active", 
+        # "unique_code"
+    ]
+
+admin.site.register(Membership, MembershipAdmin)
