@@ -28,4 +28,14 @@ class MembershipAdmin(admin.ModelAdmin):
 
     # list_editable = ["membership_plan", "unique_code"]
 
+    actions = ("set_membership_to_active", )
+
+    def set_membership_to_active(self, request, queryset):
+
+        queryset.update(membership_active=True)
+
+        self.message_user(request, "Membership(s) activated.")
+
+    set_membership_to_active.short_description = "Mark selected items as membership active"
+
 admin.site.register(Membership, MembershipAdmin)
