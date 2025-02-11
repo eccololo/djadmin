@@ -2,6 +2,11 @@ from django.contrib import admin
 from .models import Course, Lecture
 
 
+class AdminLoginArea(admin.AdminSite):
+
+    login_template = "admin/login.html"
+
+
 class InlineLecture(admin.StackedInline):
 
     model = Lecture
