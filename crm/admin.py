@@ -1,5 +1,7 @@
 from django.contrib import admin
 from django.contrib.auth.models import User, Group
+from django.contrib import messages
+from django.urls import resolve
 from .models import Membership
 
 # admin.site.unregister(User)
@@ -45,6 +47,23 @@ class MembershipAdmin(admin.ModelAdmin):
         return True
     
     def has_delete_permission(self, request, obj=None):
+
+        if any("Are you sure you want to delete this object?" in m.message for m in messages.get_messages(request)):
+            
+            return True
+
+        if obj is not None and request.POST.get("action") == "delete_selected":
+
+            messages.add_message(request, messages.ERROR, (
+                "Are you sure you want to delete this object?"
+            ))
+
+        elif obj is not None and resolve(request.path_info).url_name == "crm_membership_delete":
+            
+            messages.add_message(request, messages.ERROR, (
+                "Are you sure you want to delete this object?"
+            ))
+
         return True
 
 admin.site.register(Membership, MembershipAdmin)
