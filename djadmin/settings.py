@@ -31,14 +31,20 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'django_admin_env_notice',
+    # 'multi_captcha_admin', # For captcha on login page to admin panel. Doesnt work with jazzmin.
+    'jazzmin',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
     'crm',
     'education',
+    'captcha' # For captcha on login page to admin panel.
 ]
 
 MIDDLEWARE = [
@@ -64,6 +70,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+
+                "django_admin_env_notice.context_processors.from_settings",
             ],
         },
     },
@@ -127,3 +135,15 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# For Captcha on login page to admin panel.
+MULTI_CAPTCHA_ADMIN = {
+    'engine': 'simple-captcha',
+}
+
+
+# Distinguishing environment - settings.
+ENVIRONMENT_NAME = "Development server"
+ENVIRONMENT_COLOR = "#FF2222"
+ENVIRONMENT_FLOAT = True
+ENVIRONMENT_SHOW_TO_UNAUTHENTICATED = False

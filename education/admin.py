@@ -13,11 +13,6 @@ education_site.register(Course)
 education_site.register(Lecture)
 
 
-class AdminLoginArea(admin.AdminSite):
-
-    login_template = "admin/login.html"
-
-
 class InlineLecture(admin.StackedInline):
 
     model = Lecture
