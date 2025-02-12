@@ -2,6 +2,17 @@ from django.contrib import admin
 from .models import Course, Lecture
 
 
+# Separate admin panel for education app.
+class EducationAdminSite(admin.AdminSite):
+
+    site_header = "Education administration"
+
+education_site = EducationAdminSite(name="education-site")
+
+education_site.register(Course)
+education_site.register(Lecture)
+
+
 class AdminLoginArea(admin.AdminSite):
 
     login_template = "admin/login.html"
