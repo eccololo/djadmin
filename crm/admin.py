@@ -2,8 +2,8 @@ from django.contrib import admin
 from django.contrib.auth.models import User, Group
 from .models import Membership
 
-admin.site.unregister(User)
-admin.site.unregister(Group)
+# admin.site.unregister(User)
+# admin.site.unregister(Group)
 
 # Customizing admin titles
 admin.site.site_header = "DjAdmin"
@@ -37,5 +37,14 @@ class MembershipAdmin(admin.ModelAdmin):
         self.message_user(request, "Membership(s) activated.")
 
     set_membership_to_active.short_description = "Mark selected items as membership active"
+
+    def has_add_permission(self, request):
+        return True
+    
+    def has_change_permission(self, request, obj=None):
+        return True
+    
+    def has_delete_permission(self, request, obj=None):
+        return True
 
 admin.site.register(Membership, MembershipAdmin)
