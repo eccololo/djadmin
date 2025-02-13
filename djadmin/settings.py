@@ -44,7 +44,10 @@ INSTALLED_APPS = [
 
     'crm',
     'education',
-    'captcha' # For captcha on login page to admin panel.
+    'captcha', # For captcha on login page to admin panel.
+
+    'data_wizard',
+    'data_wizard.sources',
 ]
 
 MIDDLEWARE = [

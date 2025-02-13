@@ -22,3 +22,10 @@ class Membership(models.Model):
 
         verbose_name_plural = "Membership"
         ordering = ["unique_code", "name"]
+
+    
+class Client(models.Model):
+
+    first_name = models.CharField(max_length=100)
+    last_name = models.CharField(max_length=100)
+    job_title = models.CharField(max_length=150)

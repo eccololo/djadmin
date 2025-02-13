@@ -2,7 +2,12 @@ from django.contrib import admin
 from django.contrib.auth.models import User, Group
 from django.contrib import messages
 from django.urls import resolve
-from .models import Membership
+from .models import Membership, Client
+
+import data_wizard
+
+data_wizard.register(Client)
+admin.site.register(Client)
 
 # admin.site.unregister(User)
 # admin.site.unregister(Group)
